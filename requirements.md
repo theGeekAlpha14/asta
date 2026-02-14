@@ -211,22 +211,22 @@ AI-Powered Assessment:
 ### What Traditional Methods Cannot Do
 
 **Rule-Based Systems:**
-❌ Cannot adapt to changing patterns
-❌ Limited by predefined scenarios  
-❌ No learning from new data
-❌ Brittle in edge cases
+❌ Cannot adapt to changing patterns.
+❌ Limited by predefined scenarios. 
+❌ No learning from new data.
+❌ Brittle in edge cases.
 
 **Static Safety Data:**
-❌ Safety conditions change hourly
-❌ No dynamic risk assessment
-❌ Cannot predict emerging threats
-❌ Outdated information = false security
+❌ Safety conditions change hourly.
+❌ No dynamic risk assessment.
+❌ Cannot predict emerging threats.
+❌ Outdated information = false security.
 
 **Manual Community Monitoring:**
-❌ Cannot process real-time data from millions of users
-❌ Human fatigue and inconsistency
-❌ Cannot identify subtle behavioral patterns
-❌ No 24/7 monitoring capability
+❌ Cannot process real-time data from millions of users.
+❌ Human fatigue and inconsistency.
+❌ Cannot identify subtle behavioral patterns.
+❌ No 24/7 monitoring capability.
 
 ### AI Enables What Was Previously Impossible
 
