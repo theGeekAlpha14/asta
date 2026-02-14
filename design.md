@@ -70,7 +70,7 @@ This design document outlines the **PRODUCTION-READY** technical architecture fo
 ┌─────────────────────────────────────────────────────────────────┐
 │                  EXTERNAL SERVICES                              │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
-│  │ Google Maps  │  │ Twilio       │  │ AWS SNS      │           │
+│  │ Google Maps  │  │ Twilio       │  │ AWS, SNS     │           │
 │  │ (Routing)    │  │ (Calls)      │  │ (SMS)        │           │
 │  └──────────────┘  └──────────────┘  └──────────────┘           │
 └─────────────────────────────────────────────────────────────────┘
@@ -118,7 +118,7 @@ Tech Stack:
 └── Lottie (animations)
 
 Why React Native:
-✅ Cross-platform (iOS + Android from single codebase)
+✅ Cross-platform (iOS + Android from a single codebase)
 ✅ Fast development with hot reload
 ✅ Large ecosystem of libraries
 ✅ Native performance for critical features
@@ -339,9 +339,9 @@ RoutePlannerScreen
 **Implementation Strategy**: Multi-channel real-time emergency response system
 
 **SOS Activation Flow**:
-```javascript
+```JavaScript
 async function triggerSOS(userId, location, context) {
-  // 1. Create SOS incident record
+  // 1. Create an SOS incident record
   const incident = await createSOSIncident({
     userId,
     location,
@@ -376,7 +376,7 @@ async function triggerSOS(userId, location, context) {
 Lambda: sos-handler
 ├── Input: user_id, location, context
 ├── Process:
-│   ├── Create incident in RDS
+│   ├── Create an incident in RDS
 │   ├── Call ML model for severity classification
 │   ├── Trigger notification-dispatcher Lambda
 │   ├── Start WebSocket updates
@@ -395,7 +395,7 @@ Lambda: notification-dispatcher
 ```
 
 **Emergency Dashboard (React Web App)**:
-```javascript
+```JavaScript
 // Real-time dashboard for emergency contacts
 function EmergencyDashboard({ incidentId }) {
   const [incident, setIncident] = useState(null);
@@ -441,7 +441,7 @@ EmergencyDashboard (Web app)
 ```
 
 **Implementation Flow**:
-1. User presses SOS button
+1. User presses the SOS button
 2. 5-second countdown (can cancel)
 3. After countdown → Create incident, send notifications
 4. Emergency contacts receive SMS/call/push within 30 seconds
@@ -666,8 +666,6 @@ This production-ready design delivers a **FULLY FUNCTIONAL MVP** with:
 The goal is to build a prototype that:
 - Solves a real problem with real technology
 - Can onboard 1,000+ beta users immediately
-- Demonstrates clear path to scale
+- Demonstrates a clear path to scale
 - Proves technical and execution capability
-
-**Build production-quality. Prove you can execute. Win the competition.**
-
+  
