@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e92063",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#1a0d12",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-gradient {
+            background: linear-gradient(135deg, #e92063 0%, #331a22 50%, #1a0d12 100%);
+            background-attachment: fixed;
+        }
+        .glass-card {
+            background: rgba(33, 17, 22, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(233, 32, 99, 0.1);
+        }
+        .muted-step {
+            background: rgba(233, 32, 99, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-slate-100 flex justify-center items-start min-h-screen">
+<!-- Mobile Container (375x812) -->
+<div class="relative w-[375px] h-[812px] liquid-gradient overflow-hidden flex flex-col shadow-2xl">
+<!-- Header / Top Bar -->
+<div class="flex items-center p-6 pb-2 justify-between z-10">
+<div class="text-white flex size-10 shrink-0 items-center justify-center rounded-full bg-white/10">
+<span class="material-symbols-outlined text-xl">arrow_back</span>
+</div>
+<h2 class="text-white text-sm font-bold tracking-widest flex-1 text-center uppercase">Identity</h2>
+<div class="w-10"></div>
+</div>
+<!-- Progress Indicator -->
+<div class="flex flex-col gap-3 px-6 py-4 z-10">
+<div class="flex gap-2 h-1.5 w-full">
+<div class="h-full rounded-full bg-primary flex-1"></div>
+<div class="h-full rounded-full muted-step flex-1"></div>
+<div class="h-full rounded-full muted-step flex-1"></div>
+</div>
+<div class="flex justify-between">
+<p class="text-primary text-[10px] font-bold tracking-widest uppercase">Step 1 of 3</p>
+<p class="text-slate-400 text-[10px] font-medium uppercase">Verification</p>
+</div>
+</div>
+<!-- Main Interaction Card (Glassmorphism) -->
+<div class="mt-auto glass-card rounded-t-xl p-8 pb-10 flex flex-col gap-6 shadow-2xl border-t border-primary/20">
+<div class="space-y-2 text-center">
+<h1 class="text-white text-2xl font-bold tracking-tight">Reset Your Password</h1>
+<p class="text-slate-400 text-sm leading-relaxed">Enter your email address to receive a verification code.</p>
+</div>
+<!-- Email Input -->
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email Address</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">mail</span>
+</div>
+<input class="w-full h-14 bg-background-dark/50 border border-primary/20 rounded-xl pl-12 pr-4 text-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-600" placeholder="yourname@example.com" type="email"/>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold h-14 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
+<span>Send Code</span>
+<span class="material-symbols-outlined text-xl">bolt</span>
+</button>
+<!-- Preview Section -->
+<div class="mt-4 pt-6 border-t border-white/5 opacity-40">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4 text-center">Previewing Next Steps</p>
+<div class="space-y-6 grayscale">
+<div class="flex justify-between gap-3 px-2">
+<div class="w-12 h-14 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-slate-600 text-xl font-bold">4</div>
+<div class="w-12 h-14 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-slate-600 text-xl font-bold">8</div>
+<div class="w-12 h-14 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-slate-600 text-xl font-bold">0</div>
+<div class="w-12 h-14 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-slate-600 text-xl font-bold">2</div>
+</div>
+<button class="w-full bg-white/5 text-slate-500 font-bold h-12 rounded-xl border border-white/10 cursor-not-allowed" disabled="">
+                        Verify Code
+                    </button>
+</div>
+</div>
+<!-- Footer Link -->
+<div class="text-center pt-2">
+<p class="text-slate-400 text-sm">
+                    Already have an account? 
+                    <a class="text-primary font-bold hover:underline" href="#">Login</a>
+</p>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute top-40 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px]"></div>
+<div class="absolute top-20 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-[60px]"></div>
+</div>
+</body></html>

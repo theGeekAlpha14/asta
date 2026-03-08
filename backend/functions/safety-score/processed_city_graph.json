@@ -1,0 +1,10 @@
+{
+  "Mumbai": {
+    "nodes": {"0": {"lat": 19.0760, "lon": 72.8777, "lighting": 0.8, "crime_index": 0.2, "crowd_density": 0.7}},
+    "edges": []
+  },
+  "Pune": {
+    "nodes": {"0": {"lat": 18.5204, "lon": 73.8567, "lighting": 0.7, "crime_index": 0.3, "crowd_density": 0.6}},
+    "edges": []
+  }
+}

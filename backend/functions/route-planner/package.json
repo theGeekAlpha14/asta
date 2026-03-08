@@ -1,0 +1,9 @@
+{
+  "name": "route-planner",
+  "version": "1.0.0",
+  "description": "ASTA Route Planner Function",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-sagemaker-runtime": "^3.0.0"
+  }
+}

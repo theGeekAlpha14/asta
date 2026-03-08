@@ -1,0 +1,9 @@
+{
+  "name": "safety-score",
+  "version": "1.0.0",
+  "description": "ASTA Safety Score Lambda",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-sagemaker-runtime": "^3.0.0"
+  }
+}

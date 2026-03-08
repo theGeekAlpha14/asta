@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ASTA Safety Heat Map</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#e92063",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211116",
+                        "surface-dark": "#181113",
+                        "surface-card": "#261c1f",
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .map-overlay-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(233, 32, 99, 0.15) 0%, rgba(24, 17, 19, 0) 70%);
+        }
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-slate-100 font-display antialiased overflow-hidden h-screen w-full flex flex-col relative">
+<!-- Full Screen Map Background -->
+<div class="absolute inset-0 z-0 w-full h-full bg-surface-dark" data-alt="Dark stylized city map view" data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuASg3TqY5O63kKzd2Nwkr2VYTpWRK_mwwBWE8pG0oTZZY9Di2GYkdjO6OAaMhp6zlSktWkuZOnigU2Z29ZbsHE4ebugb-CToe1kTHsIahXrHa4h2Zl0z8pLtJS4FDQolIhdWvW86PzaJq27gQbMxqXbDsbyYZIriwpbh_gqhOyKx70BcT-OBzhmCwvp_UfYIUFIF7GHBg4PBfTslzkcTP1utEdiEpVgaDjpaBwkx5M6Ic0VtAUFH9sibIzLw9UNh-4C4x0CCSJGm7K9'); background-size: cover; background-position: center;">
+<!-- Dark Overlay for Map Readability -->
+<div class="absolute inset-0 bg-surface-dark/60 backdrop-blur-[2px]"></div>
+<!-- Heatmap Simulation Layers -->
+<div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/30 rounded-full blur-3xl mix-blend-screen animate-pulse"></div>
+<div class="absolute bottom-1/3 right-1/4 w-48 h-48 bg-purple-600/30 rounded-full blur-3xl mix-blend-screen"></div>
+<!-- Location Pins (Simulated) -->
+<div class="absolute top-[30%] left-[45%] flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center animate-bounce">
+<div class="w-4 h-4 rounded-full bg-primary shadow-[0_0_15px_rgba(233,32,99,0.8)]"></div>
+</div>
+</div>
+</div>
+<!-- Top Bar / Search Area -->
+<div class="relative z-20 px-4 pt-12 pb-4 w-full bg-gradient-to-b from-surface-dark/90 to-transparent">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-12 bg-surface-card/80 backdrop-blur-md rounded-xl border border-white/10 flex items-center px-4 shadow-lg">
+<span class="material-symbols-outlined text-gray-400 mr-3">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-white placeholder-gray-400 w-full text-sm font-medium" placeholder="Search safe zones..." type="text"/>
+</div>
+<button class="h-12 w-12 bg-surface-card/80 backdrop-blur-md rounded-xl border border-white/10 flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Main Content Area (Spacer) -->
+<div class="flex-1 relative z-10 pointer-events-none">
+<!-- Floating Map Controls -->
+<div class="absolute right-4 top-4 flex flex-col gap-3 pointer-events-auto">
+<button class="h-10 w-10 bg-surface-card/90 backdrop-blur-md rounded-lg flex items-center justify-center text-white shadow-lg active:bg-surface-card border border-white/5">
+<span class="material-symbols-outlined text-[20px]">my_location</span>
+</button>
+<button class="h-10 w-10 bg-surface-card/90 backdrop-blur-md rounded-lg flex items-center justify-center text-white shadow-lg active:bg-surface-card border border-white/5">
+<span class="material-symbols-outlined text-[20px]">layers</span>
+</button>
+</div>
+</div>
+<!-- Bottom Floating Card Section -->
+<div class="relative z-20 pb-2 px-4 w-full flex flex-col justify-end gap-4 pointer-events-none">
+<!-- Report Incident FAB -->
+<div class="flex justify-end pointer-events-auto mb-2">
+<button class="flex items-center gap-2 bg-primary hover:bg-rose-600 text-white px-5 py-3 rounded-full shadow-[0_4px_20px_rgba(233,32,99,0.4)] transition-all active:scale-95">
+<span class="material-symbols-outlined filled">report_problem</span>
+<span class="font-bold text-sm tracking-wide">REPORT INCIDENT</span>
+</button>
+</div>
+<!-- Glassmorphism Stats Card -->
+<div class="bg-[#1e1e24]/85 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl pointer-events-auto">
+<!-- Header Row -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<h2 class="text-white text-lg font-bold">Current Area</h2>
+<div class="flex items-center gap-1 text-gray-400 text-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Downtown District, 4th Ave</span>
+</div>
+</div>
+<!-- Circular Progress -->
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-gray-700" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary drop-shadow-[0_0_4px_rgba(233,32,99,0.8)]" cx="28" cy="28" fill="transparent" r="24" stroke="currentColor" stroke-dasharray="150" stroke-dashoffset="15" stroke-width="4"></circle>
+</svg>
+<span class="absolute text-sm font-bold text-white">9.2</span>
+</div>
+</div>
+<div class="h-px w-full bg-white/10 mb-4"></div>
+<!-- Legend / Stats Row -->
+<div class="flex justify-between gap-2 overflow-x-auto no-scrollbar">
+<!-- Stat Item 1 -->
+<div class="flex items-center gap-3 bg-white/5 rounded-xl p-3 min-w-[100px] flex-1 border border-white/5">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-gray-400 uppercase tracking-wider">Alerts</span>
+<span class="text-sm font-bold text-white">2</span>
+</div>
+</div>
+<!-- Stat Item 2 -->
+<div class="flex items-center gap-3 bg-white/5 rounded-xl p-3 min-w-[100px] flex-1 border border-white/5">
+<div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+<span class="material-symbols-outlined text-[18px]">gpp_good</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-gray-400 uppercase tracking-wider">Havens</span>
+<span class="text-sm font-bold text-white">5</span>
+</div>
+</div>
+<!-- Stat Item 3 -->
+<div class="flex items-center gap-3 bg-white/5 rounded-xl p-3 min-w-[100px] flex-1 border border-white/5">
+<div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+<span class="material-symbols-outlined text-[18px]">local_police</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-gray-400 uppercase tracking-wider">Police</span>
+<span class="text-sm font-bold text-white">1</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="relative z-30 bg-surface-dark border-t border-white/10 px-6 pb-6 pt-3">
+<div class="flex justify-between items-center">
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px] group" href="#">
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors text-[24px]">home</span>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<div class="bg-primary/20 px-4 py-0.5 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px] filled">map</span>
+</div>
+<span class="text-[10px] font-bold text-primary">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px] group" href="#">
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors text-[24px]">groups</span>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px] group" href="#">
+<span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors text-[24px]">person</span>
+<span class="text-[10px] font-medium text-gray-500 group-hover:text-primary">Profile</span>
+</a>
+</div>
+<!-- iOS Home Indicator Safe Area -->
+<div class="h-1 w-full"></div>
+</div>
+</body></html>

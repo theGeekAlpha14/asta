@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ASTA Registration - Step 2</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration for Custom Colors -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'asta-pink': '#E91E63',
+            'asta-purple': '#9C27B0',
+            'asta-dark-gray': '#333333',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for UI Refinements -->
+<style data-purpose="layout-styles">
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #E91E63 0%, #9C27B0 100%);
+    }
+    /* Hide default spin buttons for number input */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  .glass-card { background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(233, 30, 99, 0.2); }</style>
+</head>
+<body class="gradient-bg flex flex-col w-[375px] h-[812px] mx-auto shadow-2xl relative overflow-hidden">
+<!-- BEGIN: Header -->
+<header class="p-6 pt-12 flex items-center relative" data-purpose="navigation-header"><!-- Back Button -->
+<button aria-label="Go back" class="absolute left-6 top-12 text-white p-2 focus:outline-none">
+<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Progress Indicator & Subtitle -->
+<div class="flex-grow flex flex-col items-center pt-10">
+<span class="text-white font-medium text-lg">Step 2 of 6</span>
+<span class="text-white/60 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Profile</span>
+</div></header>
+<!-- END: Header -->
+<!-- BEGIN: Main Content -->
+<main class="flex-grow flex flex-col relative h-full"><!-- BEGIN: Form Card -->
+<div class="shadow-xl flex-grow flex flex-col glass-card px-8 pt-12 pb-6 w-full rounded-t-[40px] mt-8" data-purpose="registration-card">
+<!-- Title Section -->
+<section class="mb-10" data-purpose="header-section">
+<h1 class="text-[28px] leading-tight font-bold text-white">Tell us a bit about yourself</h1>
+</section>
+<!-- Input Fields Section -->
+<section class="space-y-8" data-purpose="form-inputs">
+<!-- Age Input -->
+<div class="relative">
+<label class="block text-[10px] font-bold mb-2 ml-1 uppercase tracking-[0.1em] text-white/50" for="age">Age</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-asta-pink" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="block w-full pl-12 pr-4 py-4 bg-white/5 border-white/10 focus:border-asta-pink focus:ring-1 focus:ring-asta-pink rounded-2xl text-base text-white placeholder-white/20" id="age" name="age" placeholder="Your age" type="number"/>
+</div>
+</div>
+<!-- Date of Birth Input -->
+<div class="relative">
+<label class="block text-[10px] font-bold mb-2 ml-1 uppercase tracking-[0.1em] text-white/50" for="dob">Date of Birth</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-asta-pink" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 15.5a2.5 2.5 0 01-2.5 2.5H5.5A2.5 2.5 0 013 15.5V7a2 2 0 012-2h14a2 2 0 012 2v8.5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M7 7v3m10-3v3M3 10h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="block w-full pl-12 pr-12 py-4 bg-white/5 border-white/10 focus:border-asta-pink focus:ring-1 focus:ring-asta-pink rounded-2xl text-base text-white placeholder-white/20 appearance-none" id="dob" name="dob" type="date"/>
+</div>
+</div>
+<!-- Helper Text -->
+<p class="text-xs text-center leading-relaxed text-white/40 pt-4">
+          This helps us provide age-appropriate safety recommendations
+        </p>
+</section>
+<!-- Bottom Spacer for the FAB -->
+<div class="flex-grow"></div>
+</div>
+<!-- END: Form Card -->
+<div class="absolute bottom-0 left-0 w-full flex flex-col items-center pb-8"><div class="flex justify-end w-full px-8 mb-10">
+<button aria-label="Next Step" class="w-20 h-20 rounded-full bg-asta-pink shadow-[0_0_20px_rgba(233,30,99,0.5)] flex items-center justify-center text-white active:scale-95 transition-transform duration-150" id="next-step">
+<svg class="h-10 w-10" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<p class="text-white/40 text-sm">
+    Already have an account? 
+    <a class="text-asta-pink font-semibold hover:underline" href="#">Login</a>
+</p></div></main>
+<!-- END: Main Content -->
+</body></html>

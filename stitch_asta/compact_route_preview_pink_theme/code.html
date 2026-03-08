@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13", // Theme Primary
+                        "accent-pink": "#E91E63", // Requested Neon Pink
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "glass-dark": "rgba(10, 10, 10, 0.85)",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glassmorphism {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .route-line {
+            stroke: #E91E63;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.6));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="relative mx-auto w-full max-w-[375px] h-[812px] bg-background-dark overflow-hidden shadow-2xl border-x border-slate-200 dark:border-slate-800">
+<!-- MAP BACKGROUND -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Dark stylized map with a prominent neon pink route line" data-location="San Francisco" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBECOZ76cAY7xT4jPxGqnZEk6yeJKXPwQcYl0A2a476vnI1iCknaHwk-p_2HqcmWUEKzxzhwIAfqOHgKZxh0unJiEF5l_AEGsEEpn_B4zvMH9JqrRsKdQ3Q0BUhRSnqbSNM5rdjjLGKmj2twbvnvydijMRmcBKepor76uoZoLcZADZzNOFtp1IO3vV9pUyTuXTs1kTYtrsH3tbZdAXO06v0KwHxaAHyvHqdiNqOkqmJ36PjclSIXVpIpTP8h-SPLOTjpnpN2QKPe_DF');">
+<!-- SVG Route Line Overlay -->
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 375 812">
+<path class="route-line" d="M100 600 Q 150 500 200 450 T 300 300 T 250 150"></path>
+<!-- Origin Marker -->
+<circle cx="100" cy="600" fill="white" r="6" stroke="#E91E63" stroke-width="3"></circle>
+<!-- Destination Marker -->
+<circle cx="250" cy="150" fill="#E91E63" r="8"></circle>
+</svg>
+</div>
+</div>
+<!-- TOP: FLOATING SEARCH BAR -->
+<div class="absolute top-10 left-4 right-4 z-20">
+<div class="glassmorphism rounded-xl p-3 shadow-xl border border-white/10">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-accent-pink text-sm">circle</span>
+<input class="bg-transparent border-none text-slate-100 text-sm focus:ring-0 p-0 w-full placeholder-slate-400" readonly="" type="text" value="Your location"/>
+</div>
+<div class="h-[1px] bg-white/10 w-full mb-3 ml-7"></div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-accent-pink">location_on</span>
+<input class="bg-transparent border-none text-slate-100 text-sm focus:ring-0 p-0 w-full placeholder-slate-400" placeholder="Destination" type="text"/>
+<span class="material-symbols-outlined text-slate-400">swap_vert</span>
+</div>
+</div>
+</div>
+<!-- BOTTOM CONTROLS (ZOOM/NAV) -->
+<div class="absolute bottom-[240px] right-4 flex flex-col gap-2 z-10"><button class="glassmorphism size-8 flex items-center justify-center rounded-lg border border-white/10 text-white">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+<button class="glassmorphism size-8 flex items-center justify-center rounded-lg border border-white/10 text-white">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<button class="glassmorphism size-8 flex items-center justify-center rounded-lg border border-white/10 text-accent-pink">
+<span class="material-symbols-outlined text-lg">near_me</span>
+</button></div>
+<!-- BOTTOM SHEET -->
+<div class="absolute bottom-0 left-0 right-0 glassmorphism rounded-t-3xl border-t border-white/10 pt-2 pb-6 px-4 z-30"><!-- Pull Handle -->
+<div class="flex justify-center mb-2">
+<div class="w-10 h-1 rounded-full bg-white/20"></div>
+</div>
+<!-- Header Row -->
+<div class="flex justify-between items-center mb-3">
+<h2 class="text-white text-xl font-bold">Drive</h2>
+<div class="flex gap-3">
+<button class="text-slate-300 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+<button class="text-slate-300 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+</div>
+</div>
+<!-- Tab Bar -->
+<div class="flex gap-6 border-b border-white/5 mb-3">
+<div class="pb-1 border-b-2 border-accent-pink text-white text-xs font-medium">36 min</div>
+<div class="pb-1 text-slate-400 text-xs font-medium">34 min</div>
+<div class="pb-1 text-slate-400 text-xs font-medium">42 min</div>
+</div>
+<!-- Travel Info -->
+<div class="mb-4 flex items-center justify-between">
+<div>
+<div class="text-accent-pink text-xl font-bold flex items-baseline gap-1">
+                    36 min
+                    <span class="text-slate-400 text-sm font-normal">(23 km)</span>
+</div>
+<p class="text-slate-500 text-[10px]">Fastest route now</p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-2">
+<button class="w-full bg-accent-pink hover:bg-accent-pink/90 text-white font-bold py-2.5 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-accent-pink/20 transition-all text-sm">
+<span class="material-symbols-outlined text-lg">navigation</span>
+                    Start
+                </button>
+<div class="grid grid-cols-3 gap-2">
+<button class="flex flex-col items-center justify-center py-2 rounded-lg border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-accent-pink text-lg mb-0.5">add_location_alt</span>
+<span class="text-[8px] text-slate-300 font-medium uppercase tracking-wider">Stops</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2 rounded-lg border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-accent-pink text-lg mb-0.5">share</span>
+<span class="text-[8px] text-slate-300 font-medium uppercase tracking-wider">Share</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2 rounded-lg border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-accent-pink text-lg mb-0.5">bookmark</span>
+<span class="text-[8px] text-slate-300 font-medium uppercase tracking-wider">Saved</span>
+</button>
+</div>
+</div></div>
+<!-- Navigation Bar Area (Standard for Mobile UI) -->
+<div class="absolute bottom-1 w-full flex justify-center pointer-events-none">
+<div class="w-32 h-1 bg-white/30 rounded-full"></div>
+</div>
+</div>
+</body></html>

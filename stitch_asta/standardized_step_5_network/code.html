@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ASTA Registration - Emergency Contacts</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style data-purpose="custom-gradient">
+    .bg-main-gradient {
+      background: linear-gradient(135deg, #E91E63 0%, #9C27B0 100%);
+    }
+    .text-asta-purple {
+      color: #9C27B0;
+    }
+    .bg-asta-pink {
+      background-color: #E91E63;
+    }
+  
+    @keyframes pulse-scale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .animate-pulse-scale {
+      animation: pulse-scale 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
+<body class="bg-main-gradient min-h-screen font-sans text-slate-800 flex items-center justify-center bg-slate-900"><div class="w-[375px] h-[812px] bg-main-gradient overflow-hidden flex flex-col relative shadow-2xl mx-auto my-auto">
+<header class="w-full pt-14 pb-4 px-6 flex items-center justify-between text-white relative z-10">
+<button aria-label="Go back" class="p-2 -ml-2">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+<span class="text-[13px] font-bold">Step 5 of 6</span>
+<span class="text-[10px] uppercase tracking-[0.2em] opacity-60 font-bold">Network</span>
+</div>
+<div class="w-10"></div>
+</header>
+<main class="flex-grow flex flex-col relative z-10">
+<div class="bg-[#1e141d]/95 backdrop-blur-md p-8 pt-10 rounded-t-[40px] flex-grow flex flex-col h-full overflow-y-auto">
+<div class="mb-4">
+<span class="bg-asta-pink text-white text-[10px] uppercase tracking-widest font-bold px-4 py-1.5 rounded-full">
+          Recommended
+        </span>
+</div>
+<section class="mb-8">
+<h1 class="text-3xl font-bold leading-tight mb-2 text-white">Add your safety network</h1>
+<p class="text-slate-500 text-sm">Who should we alert in an emergency?</p>
+</section>
+<form class="flex flex-col flex-grow mt-2" id="emergency-contact-form">
+<div class="space-y-6">
+<div class="flex flex-col">
+<label class="text-[11px] font-bold uppercase text-slate-400 mb-2 ml-1" for="contact1-name">Contact Name</label>
+<input class="w-full bg-[#2a1e29] border-none rounded-2xl focus:ring-2 focus:ring-asta-pink p-4 text-white placeholder-slate-600" id="contact1-name" placeholder="e.g. Jane Doe" type="text"/>
+</div>
+<div class="flex flex-col">
+<label class="text-[11px] font-bold uppercase text-slate-400 mb-2 ml-1" for="contact1-phone">Phone Number</label>
+<input class="w-full bg-[#2a1e29] border-none rounded-2xl focus:ring-2 focus:ring-asta-pink p-4 text-white placeholder-slate-600" id="contact1-phone" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<button class="text-asta-purple font-bold text-sm flex items-center gap-2 mt-2" type="button">
+<span class="text-xl">+</span> Add another contact
+          </button>
+</div>
+<div class="bg-white/5 rounded-2xl p-4 flex gap-3 items-start mt-8 border border-white/5">
+<svg class="w-5 h-5 text-asta-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" x2="12" y1="16" y2="12"></line>
+<line x1="12" x2="12.01" y1="8" y2="8"></line>
+</svg>
+<p class="text-[13px] text-slate-400 leading-relaxed">
+            These contacts will receive SOS alerts with your location if you trigger an emergency.
+          </p>
+</div>
+<div class="flex items-center justify-between pt-8 mt-auto pb-4">
+<button class="text-slate-400 font-semibold text-sm" type="button">
+            Skip for now
+          </button>
+<button aria-label="Next step" class="bg-asta-pink text-white w-16 h-16 rounded-full shadow-2xl shadow-pink-600/40 flex items-center justify-center transition-all animate-pulse-scale" type="submit">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</form>
+</div>
+</main>
+</div></body></html>

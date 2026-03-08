@@ -1,0 +1,31 @@
+# Common ignores
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.exe
+*.pyc
+.idea/
+.vscode/
+.DS_Store
+
+# Android build artifacts
+mobile/android/.gradle/
+mobile/android/app/build/
+mobile/android/local.properties
+mobile/android/GeneratedPluginRegistrant.java
+
+# Mobile specific
+mobile/ios/Pods/
+mobile/ios/Build/
+mobile/dist/
+
+# Artifacts/logs
+logs/
+*.log
+.gemini/
+.agents/
+
+# AWS SAM build folders
+.aws-sam/
+backend/src/.aws-sam/

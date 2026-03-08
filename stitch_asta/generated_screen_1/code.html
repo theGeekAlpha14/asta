@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ASTA - Women's Safety Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&amp;family=Lora:wght@700&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#e92063',
+                secondary: '#9C27B0',
+                darkest: '#1a051d',
+              },
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                serif: ['Lora', 'serif'],
+              },
+              borderRadius: {
+                'custom': '12px',
+              },
+              animation: {
+                'heartbeat': 'heartbeat 2s ease-in-out infinite',
+                'shimmer': 'shimmer 3s linear infinite',
+                'float': 'float 6s ease-in-out infinite',
+                'glow-pulse': 'glow-pulse 4s ease-in-out infinite',
+              },
+              keyframes: {
+                heartbeat: {
+                  '0%, 100%': { transform: 'scale(1)' },
+                  '10%': { transform: 'scale(1.05)' },
+                  '20%': { transform: 'scale(1)' },
+                  '30%': { transform: 'scale(1.03)' },
+                  '45%': { transform: 'scale(1)' },
+                },
+                shimmer: {
+                  '0%': { backgroundPosition: '-200% center' },
+                  '100%': { backgroundPosition: '200% center' },
+                },
+                float: {
+                  '0%, 100%': { transform: 'translateY(0px)' },
+                  '50%': { transform: 'translateY(-20px)' },
+                },
+                'glow-pulse': {
+                  '0%, 100%': { opacity: 0.3, transform: 'scale(1)' },
+                  '50%': { opacity: 0.6, transform: 'scale(1.2)' },
+                }
+              }
+            }
+          }
+        }
+    </script>
+<style data-purpose="custom-animations">.shimmer-overlay {
+          background: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.4) 50%,
+            rgba(255, 255, 255, 0) 70%
+          );
+          background-size: 200% 100%;
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z'/%3E%3C/svg%3E");
+          -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z'/%3E%3C/svg%3E");
+          mask-size: contain;
+          -webkit-mask-size: contain;
+          mask-repeat: no-repeat;
+          -webkit-mask-repeat: no-repeat;
+        }.particle {
+          position: absolute;
+          background: white;
+          border-radius: 50%;
+          pointer-events: none;
+          opacity: 0.3;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-darkest font-sans overflow-hidden">
+<main class="relative h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-primary via-secondary to-darkest">
+<div class="absolute inset-0 flex items-center justify-center overflow-hidden">
+<div class="w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] animate-glow-pulse" data-purpose="background-glow"></div>
+</div>
+<div class="absolute inset-0" id="particle-container">
+</div>
+<div class="relative z-10 flex flex-col items-center" data-purpose="logo-container">
+<div class="relative animate-heartbeat">
+<svg class="w-32 h-32 text-white drop-shadow-2xl" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path>
+</svg>
+<div class="absolute inset-0 w-32 h-32 shimmer-overlay animate-shimmer"></div>
+<div class="absolute inset-0 -m-4 bg-white/10 rounded-full blur-xl scale-125"></div>
+</div>
+<div class="mt-8 text-center space-y-2">
+<h1 class="text-white text-5xl font-serif font-[700] tracking-widest drop-shadow-lg">
+                    ASTA
+                </h1>
+<p class="text-white/80 text-sm font-sans font-[300] tracking-[0.25em] uppercase">
+                    Women's Safety Intelligence
+                </p>
+</div>
+</div>
+<div class="absolute bottom-12 flex flex-col items-center space-y-4">
+<div class="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-white/60 animate-[shimmer_2s_infinite]" style="width: 30%; background-image: linear-gradient(90deg, transparent, white, transparent);"></div>
+</div>
+<span class="text-white/40 text-[10px] font-sans font-[400] tracking-[0.3em] uppercase">System Warming Up</span>
+</div>
+</main>
+<script data-purpose="particle-system">
+        // Create random floating particles for high-tech atmosphere
+        const container = document.getElementById('particle-container');
+        const particleCount = 20;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          // Randomize initial positions and sizes
+          const size = Math.random() * 4 + 2 + 'px';
+          particle.style.width = size;
+          particle.style.height = size;
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = Math.random() * 100 + '%';
+          // Randomize animation delays and durations
+          const duration = Math.random() * 5 + 5 + 's';
+          const delay = Math.random() * 5 + 's';
+          particle.style.animation = `float ${duration} ease-in-out infinite`;
+          particle.style.animationDelay = delay;
+          container.appendChild(particle);
+        }
+    </script>
+
+</body></html>

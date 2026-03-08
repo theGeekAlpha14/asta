@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ASTA Registration - Step 4</title>
+<!-- BEGIN: Tailwind Configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            astaPink: '#E91E63',
+            astaPurple: '#9C27B0',
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Tailwind Configuration -->
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="background-gradient">
+    .bg-main-gradient {
+      background: linear-gradient(135deg, #E91E63 0%, #9C27B0 100%);
+    }
+    .strength-bar {
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s linear;
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 2px currentColor); opacity: 1; }
+      50% { filter: drop-shadow(0 0 8px currentColor); opacity: 0.9; }
+    }
+    @keyframes checkmark-pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop {
+      animation: checkmark-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+  </style>
+<style data-purpose="typography">
+    .font-reassuring {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="bg-main-gradient min-h-screen font-reassuring text-slate-800 w-[375px] mx-auto relative flex flex-col">
+<!-- BEGIN: Navigation Header -->
+<header class="flex items-center justify-between text-white px-4 h-16 sticky top-0 z-50 shrink-0">
+<button aria-label="Go back" class="p-2 -ml-2 hover:bg-white/10 rounded-full transition-colors" id="back-button">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="flex flex-col items-center absolute left-1/2 -translate-x-1/2">
+<span class="font-medium text-sm text-white">Step 4 of 6</span>
+<span class="text-[10px] tracking-[0.2em] text-white/60 font-bold mt-0.5 uppercase">Security</span>
+</div>
+<div class="w-10"></div>
+</header>
+<!-- END: Navigation Header -->
+<!-- BEGIN: Main Content -->
+<main class="flex-grow flex flex-col">
+<div class="w-full flex-grow p-8 bg-black/85 backdrop-blur-md border-t border-white/10 shadow-2xl" data-purpose="registration-card" style="border-top-left-radius: 40px; border-top-right-radius: 40px; border-color: rgba(233, 30, 99, 0.2);">
+<!-- BEGIN: Header Text -->
+<section class="mb-8"><h1 class="text-2xl font-bold text-astaPink mb-2">Secure your account</h1><p class="text-white/70 text-sm">Create a strong password to keep your information safe and accessible.</p></section>
+<!-- END: Header Text -->
+<!-- BEGIN: Input Form -->
+<form class="space-y-6 pb-32">
+<!-- Password Input -->
+<div class="relative">
+<label class="sr-only" for="password">Password</label>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<input class="block w-full pl-10 pr-10 py-3 border rounded-xl focus:ring-astaPurple focus:border-astaPurple text-base bg-white/5 border-white/10 text-white placeholder-white/40" id="password" name="password" placeholder="Password" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center" data-purpose="toggle-visibility" type="button">
+<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Confirm Password Input -->
+<div class="relative">
+<label class="sr-only" for="confirm-password">Confirm Password</label>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<svg class="h-5 w-5 text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<input class="block w-full pl-10 pr-10 py-3 border rounded-xl focus:ring-astaPurple focus:border-astaPurple text-base bg-white/5 border-white/10 text-white placeholder-white/40" id="confirm-password" name="confirm-password" placeholder="Confirm Password" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center" data-purpose="toggle-visibility" type="button">
+<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Password Strength Indicator -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs font-medium text-white/60">
+<span>Password Strength</span>
+<span id="strength-label">Medium</span>
+</div>
+<div class="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+<div class="strength-bar h-full w-[60%] bg-yellow-400" id="strength-bar"></div>
+</div>
+</div>
+<!-- Checklist -->
+<ul class="space-y-3" data-purpose="password-checklist">
+<li class="flex items-center text-sm font-medium text-green-400">
+<span class="w-5 h-5 mr-3 rounded-full flex items-center justify-center bg-green-500/20 text-green-400 animate-pop">
+<svg class="h-3 w-3" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+</span>
+            8+ characters
+          </li>
+<li class="flex items-center text-sm font-medium text-green-400">
+<span class="w-5 h-5 mr-3 rounded-full flex items-center justify-center bg-green-500/20 text-green-400 animate-pop">
+<svg class="h-3 w-3" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+</svg>
+</span>
+            Uppercase &amp; Lowercase
+          </li>
+<li class="flex items-center text-sm text-white/50">
+<span class="w-5 h-5 mr-3 rounded-full flex items-center justify-center bg-white/10">
+<!-- Empty state for pending item -->
+</span>
+            Include a number
+          </li>
+<li class="flex items-center text-sm text-white/50">
+<span class="w-5 h-5 mr-3 rounded-full flex items-center justify-center bg-white/10">
+</span>
+            Special character (!@#$)
+          </li>
+<li class="flex items-center text-sm text-white/50">
+<span class="w-5 h-5 mr-3 rounded-full flex items-center justify-center bg-white/10">
+</span>
+            Passwords match
+          </li>
+</ul>
+</form>
+<!-- END: Input Form -->
+</div>
+</main>
+<!-- END: Main Content -->
+<!-- BEGIN: Floating Action Button -->
+<footer class="fixed bottom-8 right-6 z-50">
+<button aria-label="Next step" class="bg-astaPink w-16 h-16 rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 active:scale-95 transition-all focus:outline-none focus:ring-4 focus:ring-astaPink/50 shadow-astaPink/30 animate-pulse">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</footer>
+<!-- END: Floating Action Button -->
+<!-- BEGIN: Logic Scripts -->
+<script data-purpose="mock-interactivity">
+    // This script mocks the visual feedback for the password strength
+    const passwordInput = document.getElementById('password');
+    const strengthBar = document.getElementById('strength-bar');
+    const strengthLabel = document.getElementById('strength-label');
+
+    passwordInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (val.length === 0) {
+        strengthBar.style.width = '0%';
+        strengthLabel.innerText = '';
+      } else if (val.length < 5) {
+        strengthBar.style.width = '30%';
+        strengthBar.className = 'strength-bar h-full bg-red-400';
+        strengthLabel.innerText = 'Weak';
+      } else if (val.length < 10) {
+        strengthBar.style.width = '60%';
+        strengthBar.className = 'strength-bar h-full bg-yellow-400';
+        strengthLabel.innerText = 'Medium';
+      } else {
+        strengthBar.style.width = '100%';
+        strengthBar.className = 'strength-bar h-full bg-green-500';
+        strengthLabel.innerText = 'Strong';
+      }
+    });
+  </script>
+<!-- END: Logic Scripts -->
+</body></html>

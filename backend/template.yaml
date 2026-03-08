@@ -1,0 +1,161 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  ASTA Backend - Secure Auth, Safety Intelligence & Routing
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: nodejs22.x
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        USER_TABLE: !Ref UserTable
+        INCIDENT_TABLE: !Ref IncidentTable
+
+Resources:
+  # --- DATABASE ---
+  UserTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: email
+        Type: String
+
+  IncidentTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: incidentId
+        Type: String
+
+  AstaApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors: "'*'"
+
+  # --- FUNCTIONS ---
+
+  RegisterUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/register-user/
+      Handler: index.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UserTable
+      Events:
+        PostRegister:
+          Type: Api
+          Properties:
+            Path: /register
+            Method: post
+            RestApiId: !Ref AstaApi
+
+  LoginFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/login/
+      Handler: index.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UserTable
+      Events:
+        PostLogin:
+          Type: Api
+          Properties:
+            Path: /login
+            Method: post
+            RestApiId: !Ref AstaApi
+
+  SafetyScoreFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/safety-score/
+      Handler: index.handler
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: 'sagemaker:InvokeEndpoint'
+              Resource: '*'
+      Events:
+        GetScore:
+          Type: Api
+          Properties:
+            Path: /safety-score
+            Method: post
+            RestApiId: !Ref AstaApi
+
+  IncidentHandlerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/incident-handler/
+      Handler: index.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref IncidentTable
+      Events:
+        PostIncident:
+          Type: Api
+          Properties:
+            Path: /sos
+            Method: post
+            RestApiId: !Ref AstaApi
+
+  FetchIncidentsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/fetch-incidents/
+      Handler: index.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref IncidentTable
+      Events:
+        GetIncidents:
+          Type: Api
+          Properties:
+            Path: /incidents
+            Method: get
+            RestApiId: !Ref AstaApi
+
+  RoutePlannerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/route-planner/
+      Handler: index.handler
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: 'sagemaker:InvokeEndpoint'
+              Resource: '*'
+      Events:
+        PostRoute:
+          Type: Api
+          Properties:
+            Path: /route-planner
+            Method: post
+            RestApiId: !Ref AstaApi
+
+  SafetyEngineFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/safety-engine/
+      Handler: index.handler
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: 'sagemaker:InvokeEndpoint'
+              Resource: '*'
+      Events:
+        PostMonitor:
+          Type: Api
+          Properties:
+            Path: /companion/monitor
+            Method: post
+            RestApiId: !Ref AstaApi
+
+Outputs:
+  AstaApiUrl:
+    Value: !Sub "https://${AstaApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
